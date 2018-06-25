@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { login } from "./redux/actions";
 import { withRouter } from "react-router-dom";
 import * as urls from "./urls";
+import { compose } from "redux";
 const styles = {
   form: {
     display: "flex",
@@ -84,6 +85,8 @@ const mapDispatchToProps = {
   login
 };
 
-export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginPage))
-);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(LoginPage);
