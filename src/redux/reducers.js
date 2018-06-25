@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import { combineReducers } from "redux";
 
 const DEFAULT_AUTH_STATE = {
-  username: null,
+  username: 'test',
   isPending: false
 };
 
