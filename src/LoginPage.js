@@ -44,8 +44,11 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, isPending } = this.props;
     const { username, password } = this.state;
+    if (isPending) {
+      return <div>Loading...</div>;
+    }
     return (
       <div className={classes.loginLayout}>
         <h2>Login</h2>
@@ -73,10 +76,14 @@ class LoginPage extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isPending: state.auth.isPending
+});
+
 const mapDispatchToProps = {
   login
 };
 
 export default withStyles(styles)(
-  connect(undefined, mapDispatchToProps)(withRouter(LoginPage))
+  connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginPage))
 );
